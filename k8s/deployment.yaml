@@ -17,22 +17,3 @@ spec:
         image: us-west3-docker.pkg.dev/ksl-notifier/ksl-notifier-repo/k8s-node-demo-app:v2
         ports:
         - containerPort: 3000
----
-apiVersion: autoscaling/v2beta2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: k8s-node-demo-hpa
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: k8s-node-demo
-  minReplicas: 1
-  maxReplicas: 5
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 80
