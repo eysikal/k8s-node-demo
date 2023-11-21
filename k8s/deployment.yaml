@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-node-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8s-node-demo
+  template:
+    metadata:
+      labels:
+        app: k8s-node-demo
+    spec:
+      containers:
+      - name: k8s-node-demo
+        image: us-west3-docker.pkg.dev/ksl-notifier/ksl-notifier-repo/k8s-node-demo-app:v1
+        ports:
+        - containerPort: 3000
